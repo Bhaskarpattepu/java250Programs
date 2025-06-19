@@ -4,13 +4,17 @@ public class Program12 {
     public static void main(String[] args)
     {
 
-        int[] arr={1,2,3,4,1,2,3,4};
+        int[] arr={1,2,3,4,1,2,3,4,4,4};
         RemoveDuplicates obj = new RemoveDuplicates();
         obj.RemoveDuplicate1(arr);
         obj.RemoveDuplicate2(arr);
         obj.RemoveDuplicatesBruteforce(arr);
+        printDuplicates obj1 = new printDuplicates();
+        obj1.printduplicatesbruteforce(arr);
+        obj1.PrintDuplicateOptimized(arr);
     }
 }
+
 class RemoveDuplicates
 {
     void RemoveDuplicate1(int[] arr)
@@ -37,11 +41,13 @@ class RemoveDuplicates
 
     //If Order is not mandatory and user can sort and compare and remove duplicates
 
-    void RemoveDuplicate2(int[] arr)
+    void RemoveDuplicate2(int[] arr1)
     {
+        int[] arr = Arrays.copyOf(arr1, arr1.length);
         Arrays.sort(arr);
         int n = arr.length;
         int j=0;
+        arr[j++]=arr[0];
         for(int i=1;i<n;i++)
         {
             if(arr[i]!=arr[i-1])
@@ -56,10 +62,13 @@ class RemoveDuplicates
 
     //BruteForce
 
-    void RemoveDuplicatesBruteforce(int[] arr)
+    void RemoveDuplicatesBruteforce(int[] arr1)
     {
+        int[] arr = Arrays.copyOf(arr1, arr1.length);
+
         int n=arr.length;
         int k=0;
+
         for(int i=0;i<n;i++)
         {
             boolean flag=true;
@@ -79,6 +88,52 @@ class RemoveDuplicates
         int[] result =Arrays.copyOf(arr,k);
         System.out.println(Arrays.toString(result));
     }
+}
 
+class printDuplicates
+{
+    void printduplicatesbruteforce(int[] arr)
+    {
+     int n = arr.length;
+     Set<Integer> dupe = new LinkedHashSet<>();
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<i;j++)
+            {
+                if(arr[i]==arr[j])
+                {
+                 dupe.add(arr[i]);
+                 break;
+                }
+
+            }
+
+        }
+        for(int k : dupe)
+        {
+            System.out.print(k+" ");
+        }
+       System.out.println();
+    }
+
+
+    void PrintDuplicateOptimized(int[] arr)
+    {
+        Set<Integer> seen = new HashSet<>();
+        Set<Integer> dupe = new LinkedHashSet<>();
+        for(int n:arr)
+        {
+            if(!seen.add(n)) //Here n element is adding to seen set then it is unique but we need duplicate so not
+            {
+                dupe.add(n);
+            }
+        }
+        for(int n:dupe)
+        {
+            System.out.print(n+" ");
+        }
+        System.out.println();
+    }
 
 }
+
