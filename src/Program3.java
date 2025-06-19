@@ -5,6 +5,7 @@ public class Program3 {
         int n=5;
         Factorial obj = new Factorial();
         obj.factorial(n);
+        System.out.println("factorial of "+n+" is "+obj.factorialRecusrive(n));
     }
 }
 class Factorial{
@@ -17,5 +18,12 @@ class Factorial{
             fact =fact*i;
         }
         System.out.println("factorial of "+n+" is "+fact);
+    }
+
+    int factorialRecusrive(int n)
+    {
+        if(n==0 || n==1)
+            return 1;
+        return n*factorialRecusrive(n-1);
     }
 }

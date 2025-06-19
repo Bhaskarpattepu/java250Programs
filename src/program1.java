@@ -28,7 +28,7 @@ public class program1 {
 
 }
 
-class main
+class ReverseString
 {
     public static void main(String[] args)
     {
